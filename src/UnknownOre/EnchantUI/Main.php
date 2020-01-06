@@ -20,7 +20,7 @@ use jojoe77777\FormAPI\{
 };
 use pocketmine\plugin\PluginBase;
 use onebone\economyapi\EconomyAPI;
-use DaPigGuy\PiggyCustomEnchants\CustomEnchants;
+use DaPigGuy\PiggyCustomEnchants\CustomEnchantManager;
 
 /**
  * Class Main
@@ -148,9 +148,9 @@ class Main extends PluginBase{
         if(is_string($enchantment)){
             $ench = Enchantment::getEnchantmentByName((string) $enchantment);
             if($this->piggyCE !== null && $ench === null){
-                $ench = CustomEnchants::getEnchantmentByName((string) $enchantment);
+                $ench = CustomEnchantManager::getEnchantmentByName((string) $enchantment);
             }
-            if($this->piggyCE !== null && $ench instanceof CustomEnchants){
+            if($this->piggyCE !== null && $ench instanceof CustomEnchantManager){
                 $this->piggyCE->addEnchantment($item, $ench->getName(), (int) $level);
             }else{
                 $item->addEnchantment(new EnchantmentInstance($ench, (int) $level));
